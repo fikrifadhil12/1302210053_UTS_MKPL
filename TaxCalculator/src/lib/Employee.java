@@ -13,23 +13,14 @@ public class Employee {
 	private String idNumber;
 	private String address;
 	
-	private int yearJoined;
-	private int monthJoined;
-	private int dayJoined;
-	private int monthWorkingInYear;
-	
-	private boolean isForeigner;
-	private boolean gender; //true = Laki-laki, false = Perempuan
-	
-	private int monthlySalary;
-	private int otherMonthlyIncome;
-	private int annualDeductible;
-	
-	private String spouseName;
-	private String spouseIdNumber;
-
-	private List<String> childNames;
-	private List<String> childIdNumbers;
+	private LocalDate joinDate; // Menggunakan LocalDate untuk tanggal bergabung
+    private boolean isForeigner;
+    private Gender gender; // Menggunakan enum untuk jenis kelamin
+    private Grade grade; // Menggunakan enum untuk grade
+    private int otherMonthlyIncome;
+    private int annualDeductible;
+    private Spouse spouse;
+    private List<Child> children;
 	
 	public Employee(String employeeId, String firstName, String lastName, String idNumber, String address, int yearJoined, int monthJoined, int dayJoined, boolean isForeigner, boolean gender) {
 		this.employeeId = employeeId;
