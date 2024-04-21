@@ -22,21 +22,19 @@ public class Employee {
     private Spouse spouse;
     private List<Child> children;
 	
-	public Employee(String employeeId, String firstName, String lastName, String idNumber, String address, int yearJoined, int monthJoined, int dayJoined, boolean isForeigner, boolean gender) {
-		this.employeeId = employeeId;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.idNumber = idNumber;
-		this.address = address;
-		this.yearJoined = yearJoined;
-		this.monthJoined = monthJoined;
-		this.dayJoined = dayJoined;
-		this.isForeigner = isForeigner;
-		this.gender = gender;
-		
-		childNames = new LinkedList<String>();
-		childIdNumbers = new LinkedList<String>();
-	}
+	// Konstruktor dengan perubahan tipe data LocalDate dan enum untuk gender dan grade
+    public Employee(String employeeId, String firstName, String lastName, String idNumber, String address, LocalDate joinDate, boolean isForeigner, Gender gender, Grade grade) {
+        this.employeeId = employeeId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.idNumber = idNumber;
+        this.address = address;
+        this.joinDate = joinDate;
+        this.isForeigner = isForeigner;
+        this.gender = gender;
+        this.grade = grade;
+        this.children = new ArrayList<>();
+    }
 	
 	/**
 	 * Fungsi untuk menentukan gaji bulanan pegawai berdasarkan grade kepegawaiannya (grade 1: 3.000.000 per bulan, grade 2: 5.000.000 per bulan, grade 3: 7.000.000 per bulan)
@@ -62,23 +60,24 @@ public class Employee {
 		}
 	}
 	
-	public void setAnnualDeductible(int deductible) {	
-		this.annualDeductible = deductible;
-	}
-	
-	public void setAdditionalIncome(int income) {	
-		this.otherMonthlyIncome = income;
-	}
-	
-	public void setSpouse(String spouseName, String spouseIdNumber) {
-		this.spouseName = spouseName;
-		this.spouseIdNumber = idNumber;
-	}
-	
-	public void addChild(String childName, String childIdNumber) {
-		childNames.add(childName);
-		childIdNumbers.add(childIdNumber);
-	}
+	// Metode setter untuk deductible dan additional income
+    public void setAnnualDeductible(int deductible) {
+        this.annualDeductible = deductible;
+    }
+
+    public void setAdditionalIncome(int income) {
+        this.otherMonthlyIncome = income;
+    }
+
+    // Metode setter untuk pasangan dengan parameter nama dan ID
+    public void setSpouse(String spouseName, String spouseIdNumber) {
+        this.spouse = new Spouse(spouseName, spouseIdNumber);
+    }
+
+	// Metode untuk menambahkan anak dengan parameter nama dan ID
+    public void addChild(String childName, String childIdNumber) {
+        children.add(new Child(childName, childIdNumber));
+    }
 	
 	public int getAnnualIncomeTax() {
 		
